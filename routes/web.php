@@ -18,28 +18,16 @@ use Illuminate\Support\Facades\Route;
 });*/
 
 Route::get('/', function () {
-    return "<a href= '".route('admin')."'>Login</a>";
+    return view ('welcome');
 });
 
 
 
 Route::get('/about', function () {
-    return "<h1>เกี่ยวกับเรา</h1>";
-});
+    return view ('about');
+})->name('about');
 
 Route::get('/blog', function () {
-    return "<h1>บทความทั้งหมด</h1>";
-});
+    return view ('blog');
+})->name('blog');
 
-Route::get('/blog/{name}', function ($name) {
-    return "<h1>บทความของ ${name}</h1>";
-});
-
-Route::get('/admin/user/kong', function () {
-    return "<h1>ยินดีต้อนรับ Admin</h1>";
-})->name('admin');
-
-
-route::fallback(function(){
-    return" <h1>ไม่พบหน้าเว็บ</h1> ";
-});
