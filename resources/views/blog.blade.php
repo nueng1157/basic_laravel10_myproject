@@ -1,6 +1,30 @@
 @extends('layout')
-@section('title','บทความทั้งหมด')
+@section('title', 'บทความทั้งหมด')
 @section('content')
-    <h2>บทความทั้งหมด</h2>
-    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aperiam quod, autem beatae id dolorum distinctio quis voluptate suscipit maiores quaerat modi natus nulla, dignissimos eligendi atque esse! Animi, laudantium est.</p>
+    <h2 class="text text-center py-2">บทความทั้งหมด</h2>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th scope="col">ชื่อบทความ</th>
+                <th scope="col">เนื้อหา</th>
+                <th scope="col">สถานะบทความ</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($blogs as $item)
+            <tr>
+                <th>{{$item['title']}}</th>
+                <td>{{$item['content']}}</td>
+                <td>
+                    @if ($item['status']==true)
+                        <a href="#" class="btn btn-success">เผยแพร่</a>
+                    @else
+                        <a href="#" class="btn btn-danger">ฉบับร่าง</a>
+                    @endif
+                </td>
+                
+            </tr>
+           @endforeach
+        </tbody>
+    </table>
 @endsection
