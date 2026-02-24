@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Blog;
 
 class AdminController extends Controller
 {
     function index(){
-        $blogs=DB::table('blogs')->get();
-    return view ('blog',compact('blogs'));
+      $blogs=Blog::paginate(5);
+      return view('blog',compact('blogs'));
     }
 
     function about(){
@@ -39,13 +40,13 @@ class AdminController extends Controller
                 'content'=>$request->content
 
             ];
-            DB::table('blogs')->insert($data);
+            Blog::insert($data);
             return redirect('/blog');
     }
 
     function delete($id){
-        DB::table('blogs')->where('id',$id)->delete();
-        return redirect('/blog');
+        Blog::find($id)->delete();
+        return redirect()->back();
     }
 
     function change($id){
@@ -58,7 +59,7 @@ class AdminController extends Controller
     }
 
     function edit($id){
-        $blog=DB::table('blogs')->where('id',$id)->first();
+        $blog=Blog::find($id);
         return view('edit',compact('blog'));
     }
 
@@ -74,6 +75,12 @@ class AdminController extends Controller
                 'content.required'=>'กรุณาป้อนเนื้อหาบทความของคุณ'
             ]
             );
+             $data=[
+            'title'=>$request->title,
+            'content'=>$request->content
+        ];
+        Blog::find($id)->update($data);
+        return redirect('/author/blog');
             
     }
 }
