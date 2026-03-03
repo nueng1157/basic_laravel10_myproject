@@ -8,8 +8,13 @@ use App\Models\Blog;
 
 class AdminController extends Controller
 {
+        public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     function index(){
-      $blogs=Blog::paginate(5);
+      $blogs=DB::table('blogs')->paginate(5);
       return view('blog',compact('blogs'));
     }
 
@@ -63,7 +68,7 @@ class AdminController extends Controller
         return view('edit',compact('blog'));
     }
 
-    function update(Request $request){
+    function update(Request $request,$id){
         $request->validate(
             [
             'title'=>'required|max:50',
@@ -76,11 +81,11 @@ class AdminController extends Controller
             ]
             );
              $data=[
-            'title'=>$request->title,
-            'content'=>$request->content
-        ];
-        Blog::find($id)->update($data);
-        return redirect('/author/blog');
+                'title'=>$request->title,
+                'content'=>$request->content
+             ];
+             DB::table('blogs')->where('id',$id)->update($data);
+             return redirect('/blog');
             
     }
 }

@@ -1,7 +1,7 @@
-@extends('layout')
-@section('title', 'เขียนบทความ')
+@extends('layouts.app')
+@section('title', 'แก้ไขบทความ')
 @section('content')
-    <h2 class="text text-center py-2">แบบฟอร์มเขียนบทความใหม่</h2>
+    <h2 class="text text-center py-2">แบบฟอร์มแก้ไขบทความใหม่</h2>
     <form method="POST" action="{{route('update',$blog->id)}}">
         @csrf
         <div class="form-group">
@@ -15,7 +15,6 @@
         @enderror
         <div class="form-group">
             <label for="content">เนื้อหาบทความ</label>
-        </div>
             <textarea name="content" id="content" cols="30" rows="5" class="form-control" >{{$blog->content}}</textarea>
         </div>
         @error('content')

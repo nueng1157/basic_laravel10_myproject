@@ -1,7 +1,8 @@
-@extends('layout')
+@extends('layouts.app')
 @section('title', 'บทความทั้งหมด')
 @section('content')
-    <h2 class="text text-center py-2">บทความทั้งหมด</h2>
+    @if (count($blogs)>0)
+        <h2 class="text text-center py-2">บทความทั้งหมด</h2>
     <table class="table table-bordered text-center">
         <thead>
             <tr>
@@ -41,4 +42,8 @@
            @endforeach
         </tbody>
     </table>
+    {{$blogs->links()}}
+    @else
+        <h2 class="text text-center py-2">ไม่มีบทความในระบบ</h2>
+    @endif
 @endsection
