@@ -55,11 +55,11 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="/create">
+                                     <a class="dropdown-item" href="/author/create">
                                         เขียนบทความ
                                     </a>
-                                     <a class="dropdown-item" href="/blog">
-                                        บทควาทั้งหมด
+                                     <a class="dropdown-item" href="/author/blog">
+                                        บทความทั้งหมด
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

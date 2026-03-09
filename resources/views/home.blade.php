@@ -15,8 +15,8 @@
                     @endif
 
                     {{ __('You are logged in!') }}<br>
-                    <a href="/create">เขียนบทความ</a><br>
-                    <a href="/blog">บทความทั้งหมด</a>
+                    <a href="/author/create">เขียนบทความ</a><br>
+                    <a href="/author/blog">บทความทั้งหมด</a>
                 </div>
             </div>
         </div>

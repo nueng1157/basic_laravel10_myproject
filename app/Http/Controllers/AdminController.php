@@ -14,16 +14,12 @@ class AdminController extends Controller
     }
     
     function index(){
-      $blogs=DB::table('blogs')->paginate(5);
+      //$blogs=DB::table('blogs')->paginate(5);
+        $blogs=Blog::paginate(5);
       return view('blog',compact('blogs'));
     }
 
-    function about(){
-        $name = "Onefineday";
-        $date = "19/2/2026";
-        return view ('about', compact('name','date'));
-    }
-
+    
     function create(){
         return view ('form');
     }
@@ -46,7 +42,7 @@ class AdminController extends Controller
 
             ];
             Blog::insert($data);
-            return redirect('/blog');
+            return redirect('/author/blog');
     }
 
     function delete($id){
@@ -55,12 +51,13 @@ class AdminController extends Controller
     }
 
     function change($id){
-       $blog=DB::table('blogs')->where('id',$id)->first();
+       $blog=Blog::find($id);
        $data=[
         'status'=>!$blog->status
        ];
-       $blog=DB::table('blogs')->where('id',$id)->update($data);
-       return redirect('/blog');
+       //$blog=DB::table('blogs')->where('id',$id)->update($data);
+       $blog=Blog::find($id)->update($data);
+       return redirect()->back();
     }
 
     function edit($id){
@@ -84,8 +81,9 @@ class AdminController extends Controller
                 'title'=>$request->title,
                 'content'=>$request->content
              ];
-             DB::table('blogs')->where('id',$id)->update($data);
-             return redirect('/blog');
+             //DB::table('blogs')->where('id',$id)->update($data);
+             Blog::find($id)->update($data);
+             return redirect('/author/blog');
             
     }
 }
