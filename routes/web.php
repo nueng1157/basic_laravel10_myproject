@@ -2,25 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BlogController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-/*Route::get('/', function () {
-    return "<h1>ยินดีต้อนรับเข้าสู่หน้าแรกของเว็บไซต์</h1>";
-});*/
+//นักอ่าน
+Route::get('/', [BlogController::class, 'index']); 
+Route::get('/detail/{id}',[BlogController::class,'detail']);
 
-Route::get('/', function () {
-    return view ('welcome');
-});
+//นักเขียน
 Route::prefix('author')->group(function(){
     Route::get('/blog', [AdminController::class,'index'])->name('blog');
     Route::get('/about', [AdminController::class,'about'])->name('about');
